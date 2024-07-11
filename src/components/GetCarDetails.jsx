@@ -6,6 +6,7 @@ import axios from 'axios';
 export default function GetCarDetails() {
     const [data, setData] = useState();
 
+    /*
     async function axiosTest() {
         const response = await axios.get('/api')
         setData(response.data);
@@ -15,6 +16,7 @@ export default function GetCarDetails() {
     useEffect(() => {
         axiosTest().then((response) => setData(response));
     }, []);
+    */
 
     return (
         <>
@@ -226,9 +228,9 @@ export default function GetCarDetails() {
                         </div>
                     </div>
                 </div>
-                {
+                {/* {
                     data
-                }
+                } */}
             </div>
         </>
     )
