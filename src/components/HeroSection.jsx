@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 export default function HeroSection() {
     return (
         <>
-            <div class="relative w-full pt-16 bg-one font-graduate dark:bg-five">
-                <div class="mx-auto w-full lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
-                    <div class="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
+            <div className="relative w-full pt-16 bg-one font-graduate dark:bg-five">
+                <div className="mx-auto w-full lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
+                    <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
                         <div className="hidden sm:mb-8 sm:flex sm:justify-center">
                             <div className="relative rounded-full border-three border dark:bg-six px-5 py-2 text-sm sm:text-lg leading-6">
                                 New to this then?
@@ -25,7 +25,7 @@ export default function HeroSection() {
                         </div>
                     </div>
                     </div>
-                    <div class="relative m-auto lg:col-span-5 lg:-mr-8 xl:col-span-6">
+                    <div className="relative m-auto lg:col-span-5 lg:-mr-8 xl:col-span-6">
                         <img src={hero} className='md:h-screen w-full dark:shadow-six dark:shadow-md md:my-5' />
                     </div>
                 </div>
