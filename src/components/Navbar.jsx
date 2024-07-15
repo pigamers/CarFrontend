@@ -4,9 +4,20 @@ import { FaMoon, FaSun } from "react-icons/fa6";
 import { CiMenuBurger } from "react-icons/ci";
 import { Link, NavLink } from 'react-router-dom';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../utils/auth/authSlice';
+
 export default function Navbar() {
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const dispatch = useDispatch();
+
+
     const [isOpenBurger, setOpenForBurger] = useState(false);
-    const [dark, setDark] = useState(false)
+    const [dark, setDark] = useState(false);
+
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
     const toggleTheme = () => {
         setDark(!dark)
@@ -52,19 +63,29 @@ export default function Navbar() {
                             <button type="button" onClick={toggleTheme} className={`${dark ? "hidden" : "relative rounded-full p-1"}`}>
                                 <FaMoon size={26} className='hover:text-one dark:hover:text-three' />
                             </button>
-                            <button type="button" onClick={toggleTheme} className={`${dark ? "relative rounded-full p-1" : "hidden" }`}>
+                            <button type="button" onClick={toggleTheme} className={`${dark ? "relative rounded-full p-1" : "hidden"}`}>
                                 <FaSun size={26} className='hover:text-one dark:hover:text-three' />
                             </button>
-                            <Link to="../login">
-                                <button className="rounded-md hidden sm:block tracking-widest px-5 py-2 border-three border hover:bg-three hover:text-one text-lg font-medium">
-                                    Login
-                                </button>
-                            </Link>
-                            <Link to="../signup">
-                                <button className="rounded-md hidden sm:block tracking-widest px-5 py-2 border-three border hover:bg-three hover:text-one text-lg font-medium">
-                                    Sign Up
-                                </button>
-                            </Link>
+                            {isAuthenticated ? (
+                                <Link to="/" onClick={handleLogout}>
+                                    <button className="rounded-md hidden sm:block tracking-widest px-5 py-2 border-three border hover:bg-three hover:text-one text-lg font-medium">
+                                        Logout
+                                    </button>
+                                </Link>
+                            ) : (
+                                <>
+                                    <Link to="../login">
+                                        <button className="rounded-md hidden sm:block tracking-widest px-5 py-2 border-three border hover:bg-three hover:text-one text-lg font-medium">
+                                            Login
+                                        </button>
+                                    </Link>
+                                    <Link to="../signup">
+                                        <button className="rounded-md hidden sm:block tracking-widest px-5 py-2 border-three border hover:bg-three hover:text-one text-lg font-medium">
+                                            Sign Up
+                                        </button>
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

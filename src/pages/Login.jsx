@@ -3,8 +3,11 @@ import { LuLogIn } from "react-icons/lu";
 import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { login } from '../utils/auth/authSlice';
 
 export default function Login() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     
     const [email, setEmail] = useState('');
@@ -18,6 +21,9 @@ export default function Login() {
                 password,
             });
             toast.success(res.data.message);
+
+            dispatch(login());
+            
             setTimeout(() => {
                 navigate('/');
             }, 2000);
