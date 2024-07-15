@@ -12,9 +12,9 @@ export default function SearchBox() {
                     </span>
                     <input
                         type="text"
-                        inputMode="numeric"
+                        inputMode="text"
                         className="bg-one block flex-1 border-l-three border border-t-0 border-b-0 border-r-0 min-w-0 text-lg p-3"
-                        placeholder="Card Number"
+                        placeholder="Enter a name of a Car"
                         required
                     />
                     <button className='px-4 py-2 border-three border hover:bg-three hover:text-one'>Search</button>
