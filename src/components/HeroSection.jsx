@@ -2,10 +2,12 @@ import React from 'react'
 import { FaArrowRight } from 'react-icons/fa6'
 import hero from '../assets/carsinparallel.jpg'; // with import
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function HeroSection() {
+    const theme = useSelector(state => state.theme.defaultTheme);
     return (
-        <>
+        <div className={theme === 'dark' ? "dark" : ""}>
             <div className="relative w-full pt-16 bg-one font-graduate dark:bg-five">
                 <div className="mx-auto w-full lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
                     <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
@@ -31,6 +33,6 @@ export default function HeroSection() {
                 </div>
                 <hr className='dark:text-six' />
             </div>
-        </>
+        </div>
     )
 }

@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export default function Faq() {
+    const theme = useSelector(state => state.theme.defaultTheme);
+
     const [isOpenOne, setIsOpenOne] = useState(false);
     const [isOpenTwo, setIsOpenTwo] = useState(false);
     const [isOpenThree, setIsOpenThree] = useState(false);
     return (
-        <>
+        <div className={theme === 'dark' ? "dark" : ""}>
             <section className="p-16 bg-one mx-auto w-full px-6 lg:px-8 font-graduate dark:bg-five">
                 <div>
                     <div className="mx-auto max-w-2xl text-center dark:text-six">
@@ -99,6 +102,6 @@ export default function Faq() {
                 </div>
             </section>
 
-        </>
+        </div>
     )
 }

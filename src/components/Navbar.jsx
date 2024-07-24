@@ -1,31 +1,27 @@
 import React, { useState } from 'react'
 import { HiOutlineBell } from "react-icons/hi2";
-import { FaMoon, FaSun } from "react-icons/fa6";
 import { CiMenuBurger } from "react-icons/ci";
 import { Link, NavLink } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../utils/auth/authSlice';
+import ThemeToggle from './ThemeToggle';
+
 
 export default function Navbar() {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const theme = useSelector(state => state.theme.defaultTheme);
+
     const dispatch = useDispatch();
 
-
     const [isOpenBurger, setOpenForBurger] = useState(false);
-    const [dark, setDark] = useState(false);
 
     const handleLogout = () => {
         dispatch(logout());
     };
 
-    const toggleTheme = () => {
-        setDark(!dark)
-        document.body.classList.toggle('dark')
-    }
-
     return (
-        <>
+        <div className={theme === 'dark' ? "dark" : ""}>
             <nav className="bg-two font-graduate border-b-2 dark:border-six rounded-b-3xl fixed z-20 top-0 start-0 w-full dark:bg-five">
                 <div className="mx-auto px-5">
                     <div className="relative flex h-16 items-center justify-between">
@@ -60,12 +56,7 @@ export default function Navbar() {
                             <button type="button" className="relative rounded-full p-1">
                                 <HiOutlineBell size={26} className='hover:text-one dark:hover:text-three' />
                             </button>
-                            <button type="button" onClick={toggleTheme} className={`${dark ? "hidden" : "relative rounded-full p-1"}`}>
-                                <FaMoon size={26} className='hover:text-one dark:hover:text-three' />
-                            </button>
-                            <button type="button" onClick={toggleTheme} className={`${dark ? "relative rounded-full p-1" : "hidden"}`}>
-                                <FaSun size={26} className='hover:text-one dark:hover:text-three' />
-                            </button>
+                            <ThemeToggle />
                             {isAuthenticated ? (
                                 <Link to="/" onClick={handleLogout}>
                                     <button className="rounded-md hidden sm:block tracking-widest px-5 py-2 border-three border hover:bg-three hover:text-one text-lg font-medium">
@@ -124,6 +115,6 @@ export default function Navbar() {
                 )}
 
             </nav>
-        </>
+        </div>
     )
 }
