@@ -5,27 +5,14 @@ import Home from "./pages/Home";
 import GetCar from "./pages/GetCar";
 import SellCar from "./pages/SellCar";
 import About from "./pages/About";
-import { Provider } from "react-redux";
-import store from "./utils/store";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function App() {
-  // const theme = useSelector(state => state.theme.defaultTheme);
+  const theme = useSelector(state => state.theme.defaultTheme);
 
-  /*
-  useEffect(() => {
-    const html = document.querySelector('html');
-    if (theme === 'dark') {
-      html.classList.add('dark');
-    } else {
-      html.classList.remove('dark');
-    }
-  }, [theme]);
-  */
 
   return (
-    <>
-      <Provider store={store}>
+    <div className={theme === 'dark' ? 'dark' : ''}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="getcar" element={<GetCar />} />
@@ -34,8 +21,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
         </Routes>
-      </Provider>
-    </>
+    </div>
   )
 }
 

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -10,7 +11,11 @@ export default function Signup() {
     const [contactNumber, setContactNumber] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handleSignup = async (event) => {
         event.preventDefault();
@@ -95,17 +100,24 @@ export default function Signup() {
                             <div className="flex items-center justify-between">
                                 <label htmlFor="password" className="block text-lg font-medium">Password</label>
                             </div>
-                            <div className="mt-2">
+                            <div className="mt-2 relative">
                                 <input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     autoComplete="current-password"
                                     required
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     className="block w-full rounded-md border border-three py-2 px-3 shadow-sm"
                                 />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 px-3 py-2 flex items-center"
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {showPassword ? <BsEyeFill size={30} /> : <BsEyeSlashFill size={30} />}
+                                </button>
                             </div>
                         </div>
                         {/* submit button */}

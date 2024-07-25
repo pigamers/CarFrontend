@@ -1,6 +1,5 @@
 import React from 'react'
-
-import sellcar from '../assets/sellyourcar.jpg'; // with import
+import sellcar from '../assets/sellyourcar.jpg';
 
 export default function SellCarForm() {
     return (
