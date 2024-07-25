@@ -5,15 +5,15 @@ import { LuSearch } from "react-icons/lu";
 export default function SearchBox() {
     return (
         <>
-            <form className="w-2/3 mx-auto">
+            <form className="w-full lg:w-2/3 mx-auto px-4">
                 <div className="relative flex border-three border">
-                    <span className="inline-flex items-center p-4">
+                    <span className="md:inline-flex items-center p-4 hidden">
                         <LuSearch size={25} />
                     </span>
                     <input
                         type="text"
                         inputMode="text"
-                        className="bg-one block flex-1 border-l-three border border-t-0 border-b-0 border-r-0 min-w-0 text-lg p-3"
+                        className="bg-one block flex-1 border-l-three border border-t-0 border-b-0 border-r-0 min-w-0 md:text-lg p-3"
                         placeholder="Enter a name of a Car"
                         required
                     />

@@ -25,7 +25,7 @@ export default function Navbar() {
             <nav className="bg-two font-graduate border-b-2 dark:border-six rounded-b-3xl fixed z-20 top-0 start-0 w-full dark:bg-five">
                 <div className="mx-auto px-5">
                     <div className="relative flex h-16 items-center justify-between">
-                        <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                             {/* <!-- Mobile menu button--> */}
                             <button type="button" className="relative inline-flex items-center justify-center dark:text-six dark:hover:text-three rounded-md p-2" aria-controls="mobile-menu" aria-expanded="false" onClick={() => setOpenForBurger(!isOpenBurger)}>
                                 <CiMenuBurger size={26} />
