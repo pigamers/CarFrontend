@@ -12,9 +12,9 @@ export default function HeroSection() {
 
     async function axiosTest() {
         try {
-            const response = await axios.get('http://localhost:5000/api/v1/profile/', {
+            const response = await axios.get('http://localhost:5000/api/v1/auth/profile/', {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'Authorization': `${localStorage.getItem('token')}`
                 }
             })
             setData(response.data);

@@ -20,7 +20,7 @@ export default function Signup() {
     const handleSignup = async (event) => {
         event.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/v1/signup/', {
+            const res = await axios.post('http://localhost:5000/api/v1/auth/signup/', {
                 fullname,
                 contactNumber,
                 email,
@@ -30,7 +30,7 @@ export default function Signup() {
 
             setTimeout(() => {
                 navigate('/login');
-            }, 2000);
+            }, 1000);
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 toast.error(error.response.data.message);
