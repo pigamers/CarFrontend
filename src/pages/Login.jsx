@@ -34,9 +34,7 @@ export default function Login() {
 
             dispatch(login());
 
-            setTimeout(() => {
-                navigate('/');
-            }, 1000);
+            navigate('/');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.message) {
                 toast.error(error.response.data.message);
