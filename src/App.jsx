@@ -7,6 +7,7 @@ import SellCar from "./pages/SellCar";
 import AboutUs from "./pages/AboutUs";
 import { useSelector } from "react-redux";
 import FullCarDetailPage from "./pages/FullCarDetailPage";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const theme = useSelector(state => state.theme.defaultTheme);
@@ -19,16 +20,15 @@ function App() {
         <Route path="getcar" element={<GetCar />} />
         <Route path="sellcar" element={<SellCar />} />
         <Route path="about" element={<AboutUs />} />
-        {
-          isAuthenticated ? <></> :
-            <>
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-            </>
-        }
+        <Route
+          path="login"
+          element={isAuthenticated ? <ErrorPage /> : <Login />} />
+        <Route
+          path="signup"
+          element={isAuthenticated ? <ErrorPage /> : <Signup />} />
         <Route path="/cardetail/:id" element={<FullCarDetailPage />} />
       </Routes>
-    </div>
+    </div >
   )
 }
 
