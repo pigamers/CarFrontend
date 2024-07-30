@@ -100,18 +100,22 @@ export default function Navbar() {
                             <NavLink to="/about" className={({ isActive }) => `hover:bg-one dark:hover:bg-four dark:text-six block rounded-md px-3 py-2 text-lg font-medium ${isActive ? "bg-one dark:bg-four" : ""}`}>
                                 About Us
                             </NavLink>
-                            <div className='flex justify-evenly'>
-                                <Link to="../login">
-                                    <button className="bg-one md:hidden border-three border rounded hover:bg-three hover:text-one px-3 py-2 text-lg font-medium dark:border-none dark:hover:bg-three dark:shadow-six dark:shadow">
-                                        Login
-                                    </button>
-                                </Link>
-                                <Link to="../signup">
-                                    <button className="bg-one md:hidden border-three border rounded hover:bg-three hover:text-one px-3 py-2 text-lg font-medium dark:border-none dark:hover:bg-three dark:shadow-six dark:shadow">
-                                        Sign Up
-                                    </button>
-                                </Link>
-                            </div>
+                            {isAuthenticated ? "" : (
+                                <>
+                                    <div className='flex justify-evenly'>
+                                        <Link to="../login">
+                                            <button className="bg-one md:hidden border-three border rounded hover:bg-three hover:text-one px-3 py-2 text-lg font-medium dark:border-none dark:hover:bg-three dark:shadow-six dark:shadow">
+                                                Login
+                                            </button>
+                                        </Link>
+                                        <Link to="../signup">
+                                            <button className="bg-one md:hidden border-three border rounded hover:bg-three hover:text-one px-3 py-2 text-lg font-medium dark:border-none dark:hover:bg-three dark:shadow-six dark:shadow">
+                                                Sign Up
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 )}
