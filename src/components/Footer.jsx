@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <>
             <div className='bg-one dark:bg-five'>
-                <footer className="bg-two dark:bg-five font-graduate border-t rounded-t-3xl">
+                <footer className="bg-two dark:bg-five font-graduate border-t dark:border-one rounded-t-3xl">
                     <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8 dark:text-six">
                         <div className="md:flex md:justify-between">
                             <div className="mb-6 md:mb-0">
