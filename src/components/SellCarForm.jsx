@@ -65,7 +65,7 @@ export default function SellCarForm() {
                             className="h-full w-full object-cover"
                         />
                     </div>
-                    <form className="space-y-8 w-full md:w-2/5 p-5" action='' onSubmit={handleCarDetailSubmit}>
+                    <form className="space-y-8 w-full md:w-2/5 p-5" onSubmit={handleCarDetailSubmit}>
                         {currentSection === 1 && (
                             <>
                                 {/* Owner Name field */}

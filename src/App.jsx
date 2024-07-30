@@ -4,7 +4,7 @@ import Signup from "./pages/Signup";
 import Home from "./pages/Home";
 import GetCar from "./pages/GetCar";
 import SellCar from "./pages/SellCar";
-import About from "./pages/About";
+import AboutUs from "./pages/AboutUs";
 import { useSelector } from "react-redux";
 import FullCarDetailPage from "./pages/FullCarDetailPage";
 
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="getcar" element={<GetCar />} />
           <Route path="sellcar" element={<SellCar />} />
-          <Route path="about" element={<About />} />
+          <Route path="about" element={<AboutUs />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="/cardetail/:id" element={<FullCarDetailPage />} />
