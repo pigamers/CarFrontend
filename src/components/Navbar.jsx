@@ -66,7 +66,7 @@ export default function Navbar() {
                                     </button>
                                     <div className={`absolute right-0 top-12 z-10 mt-2 h-64 w-64 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${isOpenNotification ? 'block' : 'hidden'}`}>
                                         <div className="bg-one rounded-lg shadow-lg h-full">
-                                            <ul className="py-2 text-sm text-five">
+                                            <ul className="py-2 text-sm text-five text-center">
                                                 <li className="px-4 py-2 cursor-pointer">
                                                     No new notifications!!
                                                 </li>
