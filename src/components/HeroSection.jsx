@@ -36,7 +36,7 @@ export default function HeroSection() {
                     <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
                         {
                             isAuthenticated ?
-                                <div className='text-3xl lg:text-4xl text-center py-4 dark:text-one'>
+                                <div className='text-3xl lg:text-4xl text-center py-4 dark:text-six'>
                                     Hello, {' '}
                                     <br className='md:hidden' />
                                     <span className='text-three'>

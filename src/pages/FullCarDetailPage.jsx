@@ -35,7 +35,7 @@ export default function FullCarDetailPage() {
                     <div className="mx-auto px-5">
                         <div className="relative h-16">
                             <Link to="/getcar">
-                                <div className='flex items-center gap-2 h-full text-xl dark:text-one'>
+                                <div className='flex items-center gap-2 h-full text-xl dark:text-six'>
                                     <MdArrowBack size={35} />
                                     Back
                                 </div>

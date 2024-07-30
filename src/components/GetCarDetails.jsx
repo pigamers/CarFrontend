@@ -30,7 +30,7 @@ export default function GetCarDetails() {
 
     return (
         <>
-            <div className='bg-one py-24 dark:bg-five dark:text-one'>
+            <div className='bg-one py-24 dark:bg-five dark:text-six'>
                 <SearchBox />
                 <div className="grid w-full place-items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
                     {data.map((car) => {
