@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function About() {
     return (
-        <div className='py-16 font-graduate bg-one'>
+        <div className='py-16 font-graduate bg-one dark:bg-five dark:text-one'>
             <div class="mx-auto max-w-7xl px-4">
                 <div class="flex flex-col space-y-8 pb-10 pt-12 md:pt-24">
                     <p class="text-3xl font-bold text-gray-900 md:text-5xl md:leading-10">
