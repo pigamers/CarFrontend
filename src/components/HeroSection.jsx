@@ -40,7 +40,6 @@ export default function HeroSection() {
                                     Hello, {' '}
                                     <br className='md:hidden' />
                                     <span className='text-three'>
-
                                         <Typewriter
                                             words={[data]}
                                             loop={true}
