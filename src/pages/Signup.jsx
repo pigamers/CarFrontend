@@ -54,96 +54,93 @@ export default function Signup() {
     return (
         <>
             <Toaster />
-            {loading ? (
-                <Loader />
-            ) : (
-                <div className="flex min-h-full flex-col bg-two dark:bg-five font-graduate justify-center px-6 py-12 lg:px-8 h-screen">
-                    <div className="border shadow-lg space-y-8 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
-                        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                            <h2 className="mt-2 text-center text-2xl font-bold">Sign Up Here !!</h2>
+            {loading && <Loader />}
+            <div className="flex min-h-full flex-col bg-two dark:bg-five font-graduate justify-center px-6 py-12 lg:px-8 h-screen">
+                <div className="border shadow-lg space-y-8 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
+                    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                        <h2 className="mt-2 text-center text-2xl font-bold">Sign Up Here !!</h2>
+                    </div>
+                    <form className="space-y-8" action='' onSubmit={handleSignup}>
+                        {/* fullname field */}
+                        <div>
+                            <label htmlFor="name" className="block text-lg font-medium">Full Name</label>
+                            <div className="mt-2">
+                                <input
+                                    id="fullname"
+                                    name="fullname"
+                                    type="text"
+                                    required
+                                    value={fullname}
+                                    onChange={(e) => setFullName(e.target.value)}
+                                    className="block w-full rounded-md border border-three px-3 py-2 shadow-sm"
+                                />
+                            </div>
                         </div>
-                        <form className="space-y-8" action='' onSubmit={handleSignup}>
-                            {/* fullname field */}
-                            <div>
-                                <label htmlFor="name" className="block text-lg font-medium">Full Name</label>
-                                <div className="mt-2">
-                                    <input
-                                        id="fullname"
-                                        name="fullname"
-                                        type="text"
-                                        required
-                                        value={fullname}
-                                        onChange={(e) => setFullName(e.target.value)}
-                                        className="block w-full rounded-md border border-three px-3 py-2 shadow-sm"
-                                    />
-                                </div>
+                        {/* contact number field */}
+                        <div>
+                            <label htmlFor="mobile" className="block text-lg font-medium">Contact Number</label>
+                            <div className="mt-2">
+                                <input
+                                    id="contactNumber"
+                                    name="contactNumber"
+                                    type="tel"
+                                    required
+                                    value={contactNumber}
+                                    onChange={(e) => setContactNumber(e.target.value)}
+                                    className="block w-full rounded-md border border-three px-3 py-2 shadow-sm"
+                                />
                             </div>
-                            {/* contact number field */}
-                            <div>
-                                <label htmlFor="mobile" className="block text-lg font-medium">Contact Number</label>
-                                <div className="mt-2">
-                                    <input
-                                        id="contactNumber"
-                                        name="contactNumber"
-                                        type="tel"
-                                        required
-                                        value={contactNumber}
-                                        onChange={(e) => setContactNumber(e.target.value)}
-                                        className="block w-full rounded-md border border-three px-3 py-2 shadow-sm"
-                                    />
-                                </div>
+                        </div>
+                        {/* email address field */}
+                        <div>
+                            <label htmlFor="email" className="block text-lg font-medium">Email address</label>
+                            <div className="mt-2">
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    autoComplete="email"
+                                    required
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="block w-full rounded-md border border-three px-3 py-2 shadow-sm"
+                                />
                             </div>
-                            {/* email address field */}
-                            <div>
-                                <label htmlFor="email" className="block text-lg font-medium">Email address</label>
-                                <div className="mt-2">
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        autoComplete="email"
-                                        required
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        className="block w-full rounded-md border border-three px-3 py-2 shadow-sm"
-                                    />
-                                </div>
+                        </div>
+                        {/* password field */}
+                        <div>
+                            <div className="flex items-center justify-between">
+                                <label htmlFor="password" className="block text-lg font-medium">Password</label>
                             </div>
-                            {/* password field */}
-                            <div>
-                                <div className="flex items-center justify-between">
-                                    <label htmlFor="password" className="block text-lg font-medium">Password</label>
-                                </div>
-                                <div className="mt-2 relative">
-                                    <input
-                                        id="password"
-                                        name="password"
-                                        type={showPassword ? 'text' : 'password'}
-                                        autoComplete="current-password"
-                                        required
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        className="block w-full rounded-md border border-three py-2 px-3 shadow-sm"
-                                    />
-                                    <button
-                                        type="button"
-                                        className="absolute inset-y-0 right-0 px-3 py-2 flex items-center"
-                                        onClick={togglePasswordVisibility}
-                                    >
-                                        {showPassword ? <BsEyeFill size={30} /> : <BsEyeSlashFill size={30} />}
-                                    </button>
-                                </div>
-                            </div>
-                            {/* submit button */}
-                            <div>
-                                <button type='submit' className="w-full my-2 rounded-md bg-one border-three border hover:text-one hover:bg-three px-3 py-2 text-lg font-medium">
-                                    Sign Up
+                            <div className="mt-2 relative">
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    autoComplete="current-password"
+                                    required
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="block w-full rounded-md border border-three py-2 px-3 shadow-sm"
+                                />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 px-3 py-2 flex items-center"
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    {showPassword ? <BsEyeFill size={30} /> : <BsEyeSlashFill size={30} />}
                                 </button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        {/* submit button */}
+                        <div>
+                            <button type='submit' className="w-full my-2 rounded-md bg-one border-three border hover:text-one hover:bg-three px-3 py-2 text-lg font-medium">
+                                Sign Up
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            )}
+            </div>
         </>
     )
 }

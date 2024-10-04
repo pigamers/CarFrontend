@@ -29,6 +29,8 @@ export default function HeroSection() {
         setLoading(true);
 
         setTimeout(() => {
+            setLoading(false);
+
             navigate('/signup');
         }, 250);
     }
@@ -49,6 +51,7 @@ export default function HeroSection() {
 
     return (
         <>
+            {loading && <Loader />}
             <div className="relative w-full pt-16 bg-one font-graduate dark:bg-five">
                 <div className="mx-auto w-full lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
                     <div className="flex flex-col justify-center px-4 py-12 md:py-16 lg:col-span-7 lg:gap-x-6 lg:px-6 lg:py-24 xl:col-span-6">
@@ -63,16 +66,12 @@ export default function HeroSection() {
                                 </div>
                                 :
                                 <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                                    {loading ? (
-                                        <Loader />
-                                    ) : (
-                                        <div onClick={handleSignupClick} className="relative rounded-full border-three border dark:bg-six px-5 py-2 text-sm sm:text-lg leading-6">
-                                            New to this then?
-                                            <span className="font-semibold pl-3 sm:text-xl text-two hover:text-three">
-                                                <span className="absolute inset-0" aria-hidden="true"></span>Sign Up <span aria-hidden="true">&rarr;</span>
-                                            </span>
-                                        </div>
-                                    )}
+                                    <div onClick={handleSignupClick} className="relative rounded-full border-three border dark:bg-six px-5 py-2 text-sm sm:text-lg leading-6">
+                                        New to this then?
+                                        <span className="font-semibold pl-3 sm:text-xl text-two hover:text-three">
+                                            <span className="absolute inset-0" aria-hidden="true"></span>Sign Up <span aria-hidden="true">&rarr;</span>
+                                        </span>
+                                    </div>
                                 </div>
                         }
 
@@ -84,16 +83,12 @@ export default function HeroSection() {
                                     ""
                                     :
                                     <div>
-                                        {loading ? (
-                                            <Loader />
-                                        ) : (
-                                            <button
-                                                onClick={handleLoginClick}
-                                                className="rounded-md flex tracking-widest items-center gap-2 px-5 py-3 border-three border hover:bg-three hover:text-one text-lg sm:text-xl font-semibold shadow-sm"
-                                            >
-                                                Get Started <FaArrowRight />
-                                            </button>
-                                        )}
+                                        <button
+                                            onClick={handleLoginClick}
+                                            className="rounded-md flex tracking-widest items-center gap-2 px-5 py-3 border-three border hover:bg-three hover:text-one text-lg sm:text-xl font-semibold shadow-sm"
+                                        >
+                                            Get Started <FaArrowRight />
+                                        </button>
                                     </div>
                                 }
 

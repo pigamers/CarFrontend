@@ -38,12 +38,12 @@ export default function Login() {
             setTimeout(() => {
                 setLoading(false);
 
-                toast.success(res.data.message, { duration: 2000});
-                
+                toast.success(res.data.message, { duration: 2000 });
+
                 setTimeout(() => {
                     navigate('/');
-                }, 2000);
-            }, 1000);
+                }, 2500);
+            }, 500);
 
 
         } catch (error) {
@@ -58,78 +58,84 @@ export default function Login() {
         }
     };
 
+    const handleClick = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+
+            navigate('/signup');
+        }, 250);
+    }
+
     return (
         <>
             <Toaster />
-
-            {loading ? (
-                <Loader />
-            ) : (
-                <div className="flex min-h-full flex-col bg-two dark:bg-five font-graduate justify-center px-6 py-12 lg:px-8 h-screen">
-                    <div className="mt-10 border shadow-lg space-y-8 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
-                        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                            <LuLogIn size={80} className='m-auto' />
-                            <h2 className="mt-10 text-center text-2xl font-bold">Log in to your account</h2>
+            {loading && <Loader />}
+            <div className="flex min-h-full flex-col bg-two dark:bg-five font-graduate justify-center px-6 py-12 lg:px-8 h-screen">
+                <div className="mt-10 border shadow-lg space-y-8 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
+                    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                        <LuLogIn size={80} className='m-auto' />
+                        <h2 className="mt-10 text-center text-2xl font-bold">Log in to your account</h2>
+                    </div>
+                    <form className="space-y-8 mx-5" action="" onSubmit={handleLogin}>
+                        {/* email field */}
+                        <div>
+                            <label htmlFor="email" className="block text-lg font-medium">Email address</label>
+                            <div className="mt-2">
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    autoComplete="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    className="block w-full rounded-md border border-three px-3 py-2 shadow-sm"
+                                />
+                            </div>
                         </div>
-                        <form className="space-y-8 mx-5" action="" onSubmit={handleLogin}>
-                            {/* email field */}
-                            <div>
-                                <label htmlFor="email" className="block text-lg font-medium">Email address</label>
-                                <div className="mt-2">
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        autoComplete="email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        required
-                                        className="block w-full rounded-md border border-three px-3 py-2 shadow-sm"
-                                    />
-                                </div>
+                        {/* password field */}
+                        <div>
+                            <div className="flex items-center justify-between">
+                                <label htmlFor="password" className="block text-lg font-medium">Password</label>
                             </div>
-                            {/* password field */}
-                            <div>
-                                <div className="flex items-center justify-between">
-                                    <label htmlFor="password" className="block text-lg font-medium">Password</label>
-                                </div>
-                                <div className="mt-2 relative">
-                                    <input
-                                        id="password"
-                                        name="password"
-                                        type={showPassword ? 'text' : 'password'}
-                                        autoComplete="current-password"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                        className="block w-full rounded-md border border-three py-2 px-3 shadow-sm" />
-                                    <button
-                                        type="button"
-                                        className="absolute inset-y-0 right-0 px-3 py-2 flex items-center"
-                                        onClick={togglePasswordVisibility}
-                                    >
-                                        {showPassword ? <BsEyeFill size={30} /> : <BsEyeSlashFill size={30} />}
-                                    </button>
-                                </div>
-                            </div>
-                            {/* login button */}
-                            <div>
+                            <div className="mt-2 relative">
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    autoComplete="current-password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    className="block w-full rounded-md border border-three py-2 px-3 shadow-sm" />
                                 <button
-                                    type="submit"
-                                    className="w-full my-2 rounded-md bg-one border-three border hover:bg-three hover:text-one px-3 py-2 text-lg font-medium"
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 px-3 py-2 flex items-center"
+                                    onClick={togglePasswordVisibility}
                                 >
-                                    Login
+                                    {showPassword ? <BsEyeFill size={30} /> : <BsEyeSlashFill size={30} />}
                                 </button>
                             </div>
-                        </form>
+                        </div>
+                        {/* login button */}
+                        <div>
+                            <button
+                                type="submit"
+                                className="w-full my-2 rounded-md bg-one border-three border hover:bg-three hover:text-one px-3 py-2 text-lg font-medium"
+                            >
+                                Login
+                            </button>
+                        </div>
+                    </form>
 
-                        <p className="mt-10 text-center text-lg">
-                            Not a member?
-                            <Link to="../signup" className="font-semibold hover:text-three px-2">Sign Up</Link>
-                        </p>
-                    </div>
+                    <p className="mt-10 text-center text-lg">
+                        Not a member?
+                        <button onClick={handleClick} className="font-semibold hover:text-three px-2">Sign Up</button>
+                    </p>
                 </div>
-            )}
+            </div>
         </>
     )
 }
