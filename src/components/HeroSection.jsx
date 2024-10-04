@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { FaArrowRight } from 'react-icons/fa6'
 import hero from '../assets/carsinparallel.jpg'; // with import
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { Typewriter } from 'react-simple-typewriter'
+import Loader from './Loader';
 
 export default function HeroSection() {
     const [data, setData] = useState();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
     async function axiosTest() {
@@ -21,6 +24,22 @@ export default function HeroSection() {
         } catch (error) {
             console.error("Error fetching data", error);
         }
+    }
+
+    const handleSignupClick = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            navigate('/signup');
+        }, 250);
+    }
+
+    const handleLoginClick = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            navigate('/login');
+        }, 250);
     }
 
     useEffect(() => {
@@ -53,12 +72,16 @@ export default function HeroSection() {
                                 </div>
                                 :
                                 <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                                    <div className="relative rounded-full border-three border dark:bg-six px-5 py-2 text-sm sm:text-lg leading-6">
-                                        New to this then?
-                                        <Link to="signup" className="font-semibold pl-3 sm:text-xl text-two hover:text-three">
-                                            <span className="absolute inset-0" aria-hidden="true"></span>Sign Up <span aria-hidden="true">&rarr;</span>
-                                        </Link>
-                                    </div>
+                                    {loading ? (
+                                        <Loader />
+                                    ) : (
+                                        <div onClick={handleSignupClick} className="relative rounded-full border-three border dark:bg-six px-5 py-2 text-sm sm:text-lg leading-6">
+                                            New to this then?
+                                            <span className="font-semibold pl-3 sm:text-xl text-two hover:text-three">
+                                                <span className="absolute inset-0" aria-hidden="true"></span>Sign Up <span aria-hidden="true">&rarr;</span>
+                                            </span>
+                                        </div>
+                                    )}
                                 </div>
                         }
 
@@ -69,12 +92,18 @@ export default function HeroSection() {
                                 {isAuthenticated ?
                                     ""
                                     :
-                                    <Link
-                                        to="login"
-                                        className="rounded-md flex tracking-widest items-center gap-2 px-5 py-3 border-three border hover:bg-three hover:text-one text-lg sm:text-xl font-semibold shadow-sm"
-                                    >
-                                        Get Started <FaArrowRight />
-                                    </Link>
+                                    <div>
+                                        {loading ? (
+                                            <Loader />
+                                        ) : (
+                                            <button
+                                                onClick={handleLoginClick}
+                                                className="rounded-md flex tracking-widest items-center gap-2 px-5 py-3 border-three border hover:bg-three hover:text-one text-lg sm:text-xl font-semibold shadow-sm"
+                                            >
+                                                Get Started <FaArrowRight />
+                                            </button>
+                                        )}
+                                    </div>
                                 }
 
                             </div>
