@@ -4,7 +4,6 @@ import hero from '../assets/carsinparallel.jpg'; // with import
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { Typewriter } from 'react-simple-typewriter'
 import Loader from './Loader';
 
 export default function HeroSection() {
@@ -59,15 +58,7 @@ export default function HeroSection() {
                                     Hello, {' '}
                                     <br className='md:hidden' />
                                     <span className='text-three'>
-                                        <Typewriter
-                                            words={[data]}
-                                            loop={true}
-                                            cursor={true}
-                                            cursorStyle="|"
-                                            typeSpeed={70}
-                                            deleteSpeed={50}
-                                            delaySpeed={1000}
-                                        />
+                                        {data}
                                     </span>
                                 </div>
                                 :

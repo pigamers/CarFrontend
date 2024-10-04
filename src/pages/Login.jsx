@@ -24,6 +24,7 @@ export default function Login() {
     const handleLogin = async (event) => {
         event.preventDefault();
         setLoading(true);
+
         try {
             const res = await axios.post('http://localhost:5000/api/v1/auth/login/', {
                 email,
@@ -32,28 +33,35 @@ export default function Login() {
             const token = res.data.token;
 
             localStorage.setItem('token', token);
-
-            toast.success(res.data.message);
-
             dispatch(login());
 
-            setLoading(false);
+            setTimeout(() => {
+                setLoading(false);
 
-            navigate('/');
+                toast.success(res.data.message, { duration: 2000});
+                
+                setTimeout(() => {
+                    navigate('/');
+                }, 2000);
+            }, 1000);
+
 
         } catch (error) {
             setLoading(false);
-
             if (error.response && error.response.data && error.response.data.message) {
-                toast.error(error.response.data.message);
+                toast.error(error.response.data.message, { duration: 3000 });
+                console.log(error.response.data);
+
             } else {
-                toast.error("Login Failed. Please try again!!");
+                toast.error("Login Failed. Please try again!!", { duration: 3000 });
             }
         }
     };
 
     return (
         <>
+            <Toaster />
+
             {loading ? (
                 <Loader />
             ) : (
@@ -112,7 +120,6 @@ export default function Login() {
                                 >
                                     Login
                                 </button>
-                                <Toaster />
                             </div>
                         </form>
 

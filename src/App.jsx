@@ -22,10 +22,10 @@ function App() {
         <Route path="about" element={<AboutUs />} />
         <Route
           path="login"
-          element={isAuthenticated ? <ErrorPage /> : <Login />} />
+          element={<Login />} />
         <Route
           path="signup"
-          element={isAuthenticated ? <ErrorPage /> : <Signup />} />
+          element={<Signup />} />
         <Route path="/cardetail/:id" element={<FullCarDetailPage />} />
       </Routes>
     </div >
