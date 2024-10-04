@@ -30,11 +30,17 @@ export default function Signup() {
                 email,
                 password,
             });
-            toast.success(res.data.message);
 
-            setLoading(false);
+            setTimeout(() => {
+                setLoading(false);
 
-            navigate('/login');
+                toast.success(res.data.message, { duration: 2000 });
+
+                setTimeout(() => {
+                    navigate('/login');
+                }, 2000);
+            }, 1000);
+
         } catch (error) {
             setLoading(false);
             if (error.response && error.response.data && error.response.data.message) {
@@ -45,17 +51,17 @@ export default function Signup() {
         }
     };
 
-
     return (
         <>
-            <div className="flex min-h-full flex-col bg-two dark:bg-five font-graduate justify-center px-6 py-12 lg:px-8 h-screen">
-                <div className="border shadow-lg space-y-8 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
-                    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                        <h2 className="mt-2 text-center text-2xl font-bold">Sign Up Here !!</h2>
-                    </div>
-                    {loading ? (
-                        <Loader />
-                    ) : (
+            <Toaster />
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="flex min-h-full flex-col bg-two dark:bg-five font-graduate justify-center px-6 py-12 lg:px-8 h-screen">
+                    <div className="border shadow-lg space-y-8 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
+                        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                            <h2 className="mt-2 text-center text-2xl font-bold">Sign Up Here !!</h2>
+                        </div>
                         <form className="space-y-8" action='' onSubmit={handleSignup}>
                             {/* fullname field */}
                             <div>
@@ -133,12 +139,11 @@ export default function Signup() {
                                 <button type='submit' className="w-full my-2 rounded-md bg-one border-three border hover:text-one hover:bg-three px-3 py-2 text-lg font-medium">
                                     Sign Up
                                 </button>
-                                <Toaster />
                             </div>
                         </form>
-                    )}
+                    </div>
                 </div>
-            </div>
+            )}
         </>
     )
 }
