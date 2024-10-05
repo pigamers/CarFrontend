@@ -9,7 +9,6 @@ export default function GetCar() {
     <>
       <div className='font-graduate'>
         <Navbar />
-        <Toaster />
         <GetCarDetails />
         <Footer />
       </div>

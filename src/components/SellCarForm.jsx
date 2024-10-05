@@ -56,6 +56,7 @@ export default function SellCarForm() {
 
     return (
         <>
+            <Toaster />
             <div className='relative h-screen w-full bg-one font-graduate dark:bg-five dark:text-one flex items-center justify-center'>
                 <div className="flex flex-col md:flex-row items-center justify-around w-full mx-6 md:mx-10 rounded-xl border dark:border-one">
                     <div className="hidden md:block h-[400px] w-[400px] rounded-full my-5 overflow-hidden">
@@ -165,7 +166,6 @@ export default function SellCarForm() {
                             >
                                 Post Data
                             </button>
-                            <Toaster />
                         </div>
                     </form>
                 </div>

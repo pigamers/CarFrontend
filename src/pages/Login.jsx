@@ -38,12 +38,12 @@ export default function Login() {
             setTimeout(() => {
                 setLoading(false);
 
-                toast.success(res.data.message, { duration: 2000 });
+                toast.success(res.data.message, { duration: 3000 });
 
                 setTimeout(() => {
                     navigate('/');
-                }, 2500);
-            }, 500);
+                }, 500);
+            }, 1000);
 
 
         } catch (error) {
