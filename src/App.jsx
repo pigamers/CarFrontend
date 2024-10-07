@@ -8,7 +8,7 @@ import AboutUs from "./pages/AboutUs";
 import { useSelector } from "react-redux";
 import FullCarDetailPage from "./pages/FullCarDetailPage";
 import ErrorPage from "./components/ErrorPage";
-import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 function App() {
   const theme = useSelector(state => state.theme.defaultTheme);
@@ -36,17 +36,17 @@ function App() {
         <Route
           path="login"
           element={
-            <PrivateRoute>
+            <PublicRoute>
               <Login />
-            </PrivateRoute>
+            </PublicRoute>
           }
         />
         <Route
           path="signup"
           element={
-            <PrivateRoute>
+            <PublicRoute>
               <Signup />
-            </PrivateRoute>
+            </PublicRoute>
           }
         />
         <Route
