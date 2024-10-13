@@ -1,12 +1,12 @@
 import React from 'react'
-
+import { FaMicrophone } from 'react-icons/fa';
 import { LuSearch } from "react-icons/lu";
 
 export default function SearchBox() {
     return (
         <>
             <form className="w-full lg:w-2/3 mx-auto px-4">
-                <div className="relative flex border-three border">
+                <div className="relative flex border-three border rounded-md">
                     <span className="md:inline-flex items-center p-4 hidden">
                         <LuSearch size={25} />
                     </span>
@@ -17,6 +17,9 @@ export default function SearchBox() {
                         placeholder="Enter a name of a Car"
                         required
                     />
+                    <button className="flex items-center justify-center p-2 transition duration-300">
+                        <FaMicrophone size={25} />
+                    </button>
                     <button className='px-4 py-2 border-three border hover:bg-three hover:text-one'>Search</button>
                 </div>
             </form>
