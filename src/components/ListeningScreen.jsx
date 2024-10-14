@@ -40,8 +40,8 @@ const ListeningScreen = ({ onClose }) => {
         } else if (command.toLowerCase() === 'go to login page' || command.toLowerCase() === 'login page') {
             toast.success('Navigated to the login page!');
             navigate('/login'); // Navigate to the login route
-        } else if (command.toLowerCase() === 'go to signup page' || command.toLowerCase() === 'signup page') {
-            toast.success('Navigated to the signup page!');
+        } else if (command.toLowerCase() === 'go to sign up page' || command.toLowerCase() === 'sign up page') {
+            toast.success('Navigated to the sign up page!');
             navigate('/signup'); // Navigate to the signup route
         } else if (command.toLowerCase() === 'go to about us page' || command.toLowerCase() === 'about us page') {
             toast.success('Navigated to the about us page!');
