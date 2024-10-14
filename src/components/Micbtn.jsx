@@ -12,6 +12,7 @@ const Micbtn = () => {
   const handleCloseListeningScreen = () => {
     setIsListening(false);
   };
+
   return (
     <>
       <div className='fixed bottom-4 right-4 flex items-center justify-center'>

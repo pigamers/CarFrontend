@@ -1,6 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const ListeningScreen = ({ onClose }) => {
+    const [transcript, setTranscript] = useState('');
+    const recognitionRef = useRef(null);
+    const navigate = useNavigate(); // Initialize useNavigate
+
+    useEffect(() => {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.onresult = (event) => {
+            const result = event.results[0][0].transcript;
+            setTranscript(result);
+            handleCommand(result);
+        };
+
+        recognition.onend = () => {
+            onClose(); // Close the listening screen when done
+        };
+
+        recognition.start();
+        recognitionRef.current = recognition; // Store recognition instance
+
+        return () => {
+            recognition.stop();
+        };
+    }, [onClose]);
+
+    const handleCommand = (command) => {
+        if (command.toLowerCase() === 'go to get a car page') {
+            toast.success('Navigated to get a car page!');
+            navigate('/getcar'); // Navigate to the "Get Car" route
+        } else if (command.toLowerCase() === 'go to sell a car page') {
+            toast.success('Navigated to sell a car page!');
+            navigate('/sellcar'); // Navigate to the "Sell Car" route
+        } else if (command.toLowerCase() === 'go to about page') {
+            toast.success('Navigated to the about us page!');
+            navigate('/about'); // Navigate to the about route
+        } else {
+            toast.error(`Command not recognized: ${command}`);
+        }
+    };
+
+    const handleStopListening = () => {
+        if (recognitionRef.current) {
+            recognitionRef.current.stop(); // Stop the recognition
+        }
+        onClose(); // Close the listening screen
+    };
+
     return (
         <div className="fixed inset-0 flex items-center justify-center h-screen bg-black bg-opacity-75 backdrop-blur-sm z-50">
             <div className="bg-one rounded-lg p-8 shadow-lg text-center">
@@ -12,11 +65,12 @@ const ListeningScreen = ({ onClose }) => {
                     <div className="animate-pulse bg-two h-12 w-12 rounded-full"></div>
                 </div>
                 <button
-                    onClick={onClose}
+                    onClick={handleStopListening}
                     className="border border-three px-4 py-2 rounded hover:bg-three hover:text-one transition duration-300"
                 >
                     Stop Listening
                 </button>
+                <p className="mt-4">Transcript: {transcript}</p>
             </div>
         </div>
     );
