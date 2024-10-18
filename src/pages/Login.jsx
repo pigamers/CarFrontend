@@ -70,7 +70,6 @@ export default function Login() {
 
     return (
         <>
-            <Toaster />
             {loading && <Loader />}
             <div className="flex min-h-full flex-col bg-two dark:bg-five font-graduate justify-center px-6 py-12 lg:px-8 h-screen">
                 <div className="mt-10 border shadow-lg space-y-4 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
