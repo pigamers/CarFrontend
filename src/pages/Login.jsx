@@ -73,7 +73,7 @@ export default function Login() {
             <Toaster />
             {loading && <Loader />}
             <div className="flex min-h-full flex-col bg-two dark:bg-five font-graduate justify-center px-6 py-12 lg:px-8 h-screen">
-                <div className="mt-10 border shadow-lg space-y-8 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
+                <div className="mt-10 border shadow-lg space-y-4 rounded-lg p-8 bg-one dark:bg-six sm:mx-auto sm:w-full sm:max-w-lg">
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                         <LuLogIn size={80} className='m-auto' />
                         <h2 className="mt-10 text-center text-2xl font-bold">Log in to your account</h2>
@@ -130,6 +130,9 @@ export default function Login() {
                         </div>
                     </form>
 
+                    <p className="mt-10 text-center text-lg">
+                        <Link to="/forgotpassword" className="font-semibold hover:text-three px-2">Forgot Password?</Link>
+                    </p>
                     <p className="mt-10 text-center text-lg">
                         Not a member?
                         <button onClick={handleClick} className="font-semibold hover:text-three px-2">Sign Up</button>

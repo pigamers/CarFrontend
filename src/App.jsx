@@ -10,6 +10,7 @@ import FullCarDetailPage from "./pages/FullCarDetailPage";
 import ErrorPage from "./components/ErrorPage";
 import PublicRoute from "./components/PublicRoute";
 import ListeningScreen from "./components/ListeningScreen";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
 function App() {
   const theme = useSelector(state => state.theme.defaultTheme);
@@ -41,6 +42,10 @@ function App() {
               <Login />
             </PublicRoute>
           }
+        />
+        <Route
+          path="forgotpassword"
+          element={<ForgotPasswordPage />}
         />
         <Route
           path="signup"
