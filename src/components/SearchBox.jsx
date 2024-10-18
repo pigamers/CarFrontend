@@ -62,7 +62,7 @@ export default function SearchBox() {
                     inputMode="text"
                     value={transcript} // Use value instead of defaultValue
                     onChange={(e) => setTranscript(e.target.value)} // Update state on input change
-                    className="bg-one block flex-1 border-l-three border border-t-0 border-b-0 border-r-0 min-w-0 md:text-lg p-3"
+                    className="bg-one block flex-1 border-l-three border border-t-0 border-b-0 border-r-0 min-w-0 md:text-lg p-3 dark:bg-five"
                     placeholder="Enter a name of a Car"
                 />
                 <button onClick={handleClick} className="flex items-center justify-center p-2 transition duration-300" type="button">
