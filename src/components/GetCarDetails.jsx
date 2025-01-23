@@ -40,39 +40,25 @@ export default function GetCarDetails() {
                                 className="rounded-md border w-4/5 hover:scale-105 h-full"
                             >
                                 <img
-                                    src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                    src={car.FrontView}
                                     alt="Car"
                                     className="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[300px] lg:h-[200px]"
                                 />
                                 <div className="p-4 text-center space-y-4">
-                                    <h1 className="inline-flex items-center text-lg font-semibold">
-                                        Owner name - {car.OwnerName}
-                                    </h1>
-                                    <h2 className="inline-flex items-center text-lg font-semibold">
-                                        Owner Contact - {car.OwnerContact}
-                                    </h2>
-                                    <h3 className="inline-flex items-center text-lg font-semibold">
-                                        Owner's Email - {car.OwnerEmail}
-                                    </h3>
-                                    <p>
-                                        Owner Address - {car.OwnerAddress}
+                                    <p className="inline-flex items-center text-lg font-semibold">
+                                        Made by - {car.MakeOfCar}
+                                    </p>
+                                    <br />
+                                    <p className="inline-flex items-center text-lg font-semibold">
+                                        Model - {car.Model}
                                     </p>
                                     <div className="mt-4">
-                                        <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-                                            #Sneakers
-                                        </span>
-                                        <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-                                            #Nike
-                                        </span>
-                                        <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-                                            #Airmax
+                                        <span className="mb-2 mr-2 inline-block rounded-full border border-five px-3 py-1 text-[10px] font-semibold">
+                                            #{car.MakeOfCar}
                                         </span>
                                     </div>
                                     <div className="mt-3 flex items-center space-x-2">
-                                        <span className="block text-sm font-semibold">Colors : </span>
-                                        <span className="block h-4 w-4 rounded-full border-2 border-gray-300 bg-red-400"></span>
-                                        <span className="block h-4 w-4 rounded-full border-2 border-gray-300 bg-purple-400"></span>
-                                        <span className="block h-4 w-4 rounded-full border-2 border-gray-300 bg-orange-400"></span>
+                                        <span className="block text-sm font-semibold">Color : {car.Color}</span>
                                     </div>
                                     <button
                                         type="button"
