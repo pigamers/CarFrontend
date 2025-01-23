@@ -173,3 +173,68 @@ export default function GetCarDetails() {
         </div>
     );
 }
+
+
+-----------------------------------------------------
+import OwnerInfo from './OwnerInfo';
+import CarInfo from './CarInfo';
+import CarCondition from './CarCondition';
+import Pricing from './Pricing';
+
+const SellCarForm = () => {
+    // State and logic here
+    
+    return (
+        <form onSubmit={handleCarDetailSubmit}>
+            {currentSection === 1 && <OwnerInfo />}
+            {currentSection === 2 && <CarInfo />}
+            {currentSection === 3 && <CarCondition />}
+            {currentSection === 4 && <Pricing />}
+            {/* Navigation buttons here */}
+        </form>
+    );
+};
+
+
+To manage a larger number of fields without making the form excessively lengthy, you can employ a few strategies to improve the user experience and organization of the form:
+
+1. Use Multi-Step Form (Which you already have)
+You already have a multi-step form. You can split the new fields across multiple steps to prevent overwhelming the user. Each step can group related fields (e.g., Car Details, Owner Information, etc.).
+For example:
+
+Step 1: Owner Information (Name, Contact, Address, Email)
+Step 2: Car Details (Make, Model, Year, Mileage, Color)
+Step 3: Condition & History (Condition, Accident History, Service History, VIN)
+Step 4: Pricing & Photos (Price, Photos, Payment Preferences)
+This way, each step stays focused, and users won’t feel overwhelmed by a long form.
+
+2. Group Similar Fields into Sections
+To make the form more intuitive, you can group related fields under headings or sections (e.g., Car Information, Owner Information, Pricing).
+Consider using collapsible sections or accordions for additional details that users may not always need to interact with. For example, the Accident History and Service History could be collapsible sections, and users would expand them if they need to fill them out.
+3. Use Conditional Fields
+If some fields are only relevant based on previous inputs (e.g., only show “Car Accident History” if the user selects "Used" for car condition), you can conditionally render fields based on user responses.
+This helps simplify the form by showing only the relevant fields at each step.
+4. Use a Tabbed or Stepper Interface
+Instead of multiple "Next" buttons, you can use a tabbed interface or a stepper component, where users can see their progress and easily jump between sections if needed.
+5. Implement a Progress Bar
+Add a progress bar that updates as the user moves through each step, giving them a sense of how much they’ve completed and how much is left.
+6. Lazy Load Form Fields
+Consider loading more fields dynamically as the user proceeds to the next step or section. This can help reduce the initial load time of the form, and can also create a smoother experience.
+7. Smart Validation
+Instead of validating the form after all sections are filled, you could validate and save data progressively as each section is completed. This way, the user won't have to fill out everything before getting feedback.
+8. Use a Wizard Component
+A "Wizard" form layout allows for easier navigation through multiple steps. This could be achieved through libraries like react-step-wizard or similar.
+A wizard allows the user to go through different steps (or "pages") of the form while keeping a consistent UI.
+Example of a Multi-Step Setup:
+
+Step 1: Personal Information
+Owner Name, Contact, Email, Address
+
+Step 2: Car Information
+Make, Model, Year, Mileage, Color
+
+Step 3: Car Condition
+Condition, Accident History, Service History
+Step 4: Pricing & Preferences
+
+Price, Payment Methods, Photos, Insurance Status
