@@ -6,43 +6,46 @@ import Carousel from '../components/Carousel';
 
 export default function FullCarDetailPage() {
     const { id } = useParams();
-    const [car, setCar] = useState(null); // State to store car details
-    const [loading, setLoading] = useState(true); // State to handle loading state
-    const [error, setError] = useState(null); // State to handle errors
+    const [car, setCar] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchCarDetails = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/v1/cardetails/getcar/${id}`);
-                setCar(response.data); // Assuming response.data is the car object
+                setCar(response.data);
                 setLoading(false);
             } catch (err) {
-                console.error('Error fetching car details:', err); // Debugging
+                console.error('Error fetching car details:', err);
                 setError('Failed to fetch car details.');
                 setLoading(false);
             }
         };
 
         fetchCarDetails();
-    }, [id]); // Re-run the effect if ID changes
+    }, [id]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="bg-one dark:bg-five min-h-screen"> {/* Changed here */}
             <div>
                 <FullCarDetailPageHeader />
             </div>
-            <div className='py-20 dark:bg-five h-screen'>
-                {car ? (
-                    <div>
-                        <Carousel car={car} />
+            {car ? (
+                <div className="container mx-auto"> {/* Added container */}
+                    <Carousel car={car} />
+                    <div className='my-20'>
+                        hello
                     </div>
-                ) : (
-                    <div>No car details available.</div>
-                )}
-            </div>
+                    <p>hello</p>
+                </div>
+            ) : (
+                <div>No car details available.</div>
+            )}
         </div>
     );
 }
+

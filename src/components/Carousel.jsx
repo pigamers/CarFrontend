@@ -26,11 +26,11 @@ export default function Carousel({ car }) {
 
     return (
         <div
-            className="relative max-w-4xl mx-auto"
+            className="relative w-full h-screen pt-24"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
         >
-            <div className="relative h-[400px] dark:shadow-one shadow-five shadow-xl rounded-xl flex justify-center items-center">
+            <div className="relative h-full dark:shadow-one shadow-five shadow-xl rounded-xl flex justify-center items-center">
                 {/* Left Arrow */}
                 <button
                     className="absolute left-2 z-10 p-2 rounded-full bg-one cursor-pointer dark:hover:bg-five dark:hover:text-one transition-all duration-300"
