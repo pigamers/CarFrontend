@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdArrowForwardIos, MdArrowBackIos } from 'react-icons/md';
 
 export default function Carousel({ car }) {
     const [current, setCurrent] = useState(0);
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+    // Auto-play functionality
+    useEffect(() => {
+        let interval;
+        if (isAutoPlaying) {
+            interval = setInterval(() => {
+                setCurrent(current === 4 ? 0 : current + 1);
+            }, 3000); // Changes slide every 3 seconds
+        }
+        return () => clearInterval(interval);
+    }, [current, isAutoPlaying]);
 
     const next = () => {
         setCurrent(current === 4 ? 0 : current + 1);
@@ -13,14 +25,18 @@ export default function Carousel({ car }) {
     };
 
     return (
-        <div className="relative w-full mx-auto">
-            <div className="relative h-[400px] flex justify-center items-center">
+        <div
+            className="relative max-w-4xl mx-auto"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+        >
+            <div className="relative h-[400px] dark:shadow-one shadow-five shadow-xl rounded-xl flex justify-center items-center">
                 {/* Left Arrow */}
                 <button
-                    className="absolute left-2 z-10 p-2 rounded-full bg-black/50 text-white cursor-pointer hover:bg-black/75 transition-all duration-300"
+                    className="absolute left-2 z-10 p-2 rounded-full bg-one cursor-pointer dark:hover:bg-five dark:hover:text-one transition-all duration-300"
                     onClick={prev}
                 >
-                    <MdArrowBackIos className="text-2xl" />
+                    <MdArrowBackIos className="pl-1.5 text-3xl" />
                 </button>
 
                 {/* Image 1 */}
@@ -92,10 +108,10 @@ export default function Carousel({ car }) {
 
                 {/* Right Arrow */}
                 <button
-                    className="absolute right-2 z-10 p-2 rounded-full bg-black/50 text-white cursor-pointer hover:bg-black/75 transition-all duration-300"
+                    className="absolute right-2 z-10 p-2 rounded-full bg-one cursor-pointer dark:hover:bg-five dark:hover:text-one transition-all duration-300"
                     onClick={next}
                 >
-                    <MdArrowForwardIos className="text-2xl" />
+                    <MdArrowForwardIos className="pl-1 text-3xl" />
                 </button>
             </div>
         </div>
