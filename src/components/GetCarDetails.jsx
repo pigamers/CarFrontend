@@ -37,12 +37,12 @@ export default function GetCarDetails() {
                         return (
                             <div
                                 key={car._id}
-                                className="rounded-md border w-4/5 hover:scale-105 h-full"
+                                className="rounded-t-lg border w-4/5 hover:scale-105 h-full"
                             >
                                 <img
                                     src={car.FrontView}
                                     alt="Car"
-                                    className="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[300px] lg:h-[200px]"
+                                    className="aspect-[16/9] rounded-t-lg w-full md:aspect-auto md:h-[300px] lg:h-[200px]"
                                 />
                                 <div className="p-4 text-center space-y-4">
                                     <p className="inline-flex items-center text-lg font-semibold">
@@ -53,7 +53,7 @@ export default function GetCarDetails() {
                                         Model - {car.Model}
                                     </p>
                                     <div className="mt-4">
-                                        <span className="mb-2 mr-2 inline-block rounded-full border border-five px-3 py-1 text-[10px] font-semibold">
+                                        <span className="mb-2 mr-2 inline-block rounded-full text-one bg-three px-3 py-1 text-[12px] dark:bg-six dark:text-five">
                                             #{car.MakeOfCar}
                                         </span>
                                     </div>
