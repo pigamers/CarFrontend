@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { FaMicrophone } from 'react-icons/fa';
 import { LuSearch } from "react-icons/lu";
 
-export default function SearchBox() {
+export default function SearchBox({ onSearch }) {
     const [transcript, setTranscript] = useState('');
     const recognitionRef = useRef(null);
     const [isListening, setIsListening] = useState(false);
@@ -18,13 +18,14 @@ export default function SearchBox() {
         recognition.onresult = (event) => {
             const result = event.results[0][0].transcript;
             setTranscript(result);
-            // Show success toast after listening is done
-            toast.success('Heard: ' + result, { duration: 3000 }); // Show for 3 seconds
+            // Also trigger search when voice input is received
+            onSearch(result);
+            toast.success('Heard: ' + result, { duration: 3000 });
         };
 
         recognition.onend = () => {
             setIsListening(false);
-            toast.dismiss(); // Dismiss the loading toast when done
+            toast.dismiss();
         };
 
         recognitionRef.current = recognition;
@@ -32,27 +33,36 @@ export default function SearchBox() {
         return () => {
             recognition.stop();
         };
-    }, []);
+    }, [onSearch]);
 
     const handleClick = () => {
         if (isListening) {
-            recognitionRef.current.stop(); // Stop listening if already listening
+            recognitionRef.current.stop();
             return;
         }
 
         setIsListening(true);
-        const loadingToastId = toast.loading("Listening..."); // Show loading toast
-        recognitionRef.current.start(); // Start listening
-        
-        // Store the loading toast ID to dismiss later
+        const loadingToastId = toast.loading("Listening...");
+        recognitionRef.current.start();
+
         recognitionRef.current.onend = () => {
             setIsListening(false);
-            toast.dismiss(loadingToastId); // Dismiss the loading toast when done
+            toast.dismiss(loadingToastId);
         };
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSearch(transcript);
+    };
+
+    const handleInputChange = (e) => {
+        setTranscript(e.target.value);
+        onSearch(e.target.value); // Real-time search as user types
+    };
+
     return (
-        <form className="w-full lg:w-2/3 mx-auto px-4">
+        <form onSubmit={handleSubmit} className="w-full lg:w-2/3 mx-auto px-4">
             <div className="relative flex border-three border rounded-md">
                 <span className="md:inline-flex items-center p-4 hidden">
                     <LuSearch size={25} />
@@ -60,15 +70,24 @@ export default function SearchBox() {
                 <input
                     type="text"
                     inputMode="text"
-                    value={transcript} // Use value instead of defaultValue
-                    onChange={(e) => setTranscript(e.target.value)} // Update state on input change
+                    value={transcript}
+                    onChange={handleInputChange}
                     className="bg-one block flex-1 border-l-three border border-t-0 border-b-0 border-r-0 min-w-0 md:text-lg p-3 dark:bg-five"
                     placeholder="Enter a name of a Car"
                 />
-                <button onClick={handleClick} className="flex items-center justify-center p-2 transition duration-300" type="button">
+                <button
+                    onClick={handleClick}
+                    className="flex items-center justify-center p-2 transition duration-300"
+                    type="button"
+                >
                     <FaMicrophone size={25} />
                 </button>
-                <button type='submit' className='px-4 py-2 border-three border hover:bg-three hover:text-one'>Search</button>
+                <button
+                    type='submit'
+                    className='px-4 py-2 border-three border hover:bg-three hover:text-one'
+                >
+                    Search
+                </button>
             </div>
         </form>
     );
