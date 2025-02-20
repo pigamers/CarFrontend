@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { HiOutlineBell } from "react-icons/hi2";
 import { CiMenuBurger } from "react-icons/ci";
+import { FaUser } from "react-icons/fa6";
+import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link, NavLink } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,6 +17,7 @@ export default function Navbar() {
 
     const [isOpenBurger, setOpenForBurger] = useState(false);
     const [isOpenNotification, setOpenNotification] = useState(false);
+    const [isOpenProfileDropDown, setOpenProfileDropDown] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -73,11 +76,33 @@ export default function Navbar() {
                                             </ul>
                                         </div>
                                     </div>
-                                    <Link to="/" onClick={handleLogout}>
-                                        <button className="rounded-md hidden sm:block tracking-widest px-5 py-2 border-three border hover:bg-three hover:text-one text-lg font-medium">
-                                            Logout
-                                        </button>
-                                    </Link>
+                                    <button
+                                        type="button"
+                                        className='flex items-center'
+                                        onClick={() => setOpenProfileDropDown(!isOpenProfileDropDown)}
+                                    >
+                                        <span className='border rounded-full p-2'>
+                                            <FaUser />
+                                        </span>
+                                        <RiArrowDropDownLine size={25} />
+                                    </button>
+                                    <div className={`absolute right-0 top-12 z-10 mt-2 h-24 w-28 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${isOpenProfileDropDown ? 'block' : 'hidden'}`}>
+                                        <div className="bg-one rounded-lg shadow-lg h-full">
+                                            <ul className="py-2 text-sm text-five text-center space-y-2">
+                                                <li className="px-4 py-2 cursor-pointer">
+                                                    <Link to="user-profile">
+                                                        Profile
+                                                    </Link>
+                                                </li>
+                                                <hr className='w-4/5 m-auto'/>
+                                                <li>
+                                                    <Link to="/" onClick={handleLogout} className='text-three'>
+                                                        Logout
+                                                    </Link>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </>
                             ) : (
                                 <>

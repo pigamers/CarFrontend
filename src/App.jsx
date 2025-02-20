@@ -12,6 +12,7 @@ import ErrorPage from "./components/ErrorPage";
 import PublicRoute from "./components/PublicRoute";
 // import ListeningScreen from "./components/ListeningScreen";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import Profile from "./pages/Profile";
 
 function App() {
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -66,6 +67,10 @@ function App() {
               <Login />
             </PublicRoute>
           }
+        />
+        <Route
+          path="user-profile"
+          element={<Profile />}
         />
         <Route
           path="forgotpassword"
