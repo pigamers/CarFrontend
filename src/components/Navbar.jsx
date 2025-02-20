@@ -62,7 +62,12 @@ export default function Navbar() {
                                 <>
                                     <button
                                         type="button"
-                                        onClick={() => setOpenNotification(!isOpenNotification)}
+                                        onClick={() => {
+                                            setOpenNotification(!isOpenNotification)
+                                            if (isOpenProfileDropDown) {
+                                                setOpenProfileDropDown(!isOpenProfileDropDown)
+                                            }
+                                        }}
                                         className="relative rounded-full p-1"
                                     >
                                         <HiOutlineBell size={26} className='hover:text-one dark:hover:text-three' />
@@ -79,7 +84,12 @@ export default function Navbar() {
                                     <button
                                         type="button"
                                         className='flex items-center'
-                                        onClick={() => setOpenProfileDropDown(!isOpenProfileDropDown)}
+                                        onClick={() => { 
+                                            setOpenProfileDropDown(!isOpenProfileDropDown);
+                                            if (isOpenNotification) {
+                                                setOpenNotification(!isOpenNotification)
+                                            } 
+                                        }}
                                     >
                                         <span className='border rounded-full p-2'>
                                             <FaUser />
@@ -94,7 +104,7 @@ export default function Navbar() {
                                                         Profile
                                                     </Link>
                                                 </li>
-                                                <hr className='w-4/5 m-auto'/>
+                                                <hr className='w-4/5 m-auto' />
                                                 <li>
                                                     <Link to="/" onClick={handleLogout} className='text-three'>
                                                         Logout
