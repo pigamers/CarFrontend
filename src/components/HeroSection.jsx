@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaArrowRight } from 'react-icons/fa6'
-import hero from '../assets/carsinparallel.jpg'; // with import
-import { Link, useNavigate } from 'react-router-dom';
+import hero from '../assets/carsinparallel.jpg';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Loader from './Loader';
@@ -12,32 +12,37 @@ export default function HeroSection() {
     const [loading, setLoading] = useState(false);
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-    async function axiosTest() {
+    async function fetchUserProfile() {
         try {
+            const token = localStorage.getItem('token');
+
             const response = await axios.get('http://localhost:5000/api/v1/auth/profile/', {
                 headers: {
-                    'Authorization': `${localStorage.getItem('token')}`
+                    'Authorization': token,
+                    'Cache-Control': 'no-cache'
                 }
-            })
-            setData(response.data);
+            });
+
+            if (response.data && response.data.fullname) {
+                setData(response.data.fullname);
+            } else {
+                console.error("No user data in response");
+            }
         } catch (error) {
-            console.error("Error fetching data", error);
+            console.error("Error fetching profile:", error.response?.data || error.message);
         }
     }
 
     const handleSignupClick = () => {
         setLoading(true);
-
         setTimeout(() => {
             setLoading(false);
-
             navigate('/signup');
         }, 250);
     }
 
     const handleLoginClick = () => {
         setLoading(true);
-
         setTimeout(() => {
             navigate('/login');
         }, 250);
@@ -45,8 +50,23 @@ export default function HeroSection() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            axiosTest();
+            fetchUserProfile();
         }
+    }, [isAuthenticated]);
+
+    // Add a listener for user data updates
+    useEffect(() => {
+        const handleUserDataUpdate = () => {
+            if (isAuthenticated) {
+                fetchUserProfile();
+            }
+        };
+
+        window.addEventListener('userDataUpdated', handleUserDataUpdate);
+
+        return () => {
+            window.removeEventListener('userDataUpdated', handleUserDataUpdate);
+        };
     }, [isAuthenticated]);
 
     return (
