@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/auth/authSlice';
+import { loginStart, loginSuccess, loginFailure } from '../redux/auth/authSlice';
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import Loader from '../components/Loader';
 
@@ -23,38 +23,45 @@ export default function Login() {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        setLoading(true);
+        dispatch(loginStart());
 
         try {
             const res = await axios.post('http://localhost:5000/api/v1/auth/login/', {
                 email,
                 password,
             });
-            const token = res.data.token;
 
-            localStorage.setItem('token', token);
-            dispatch(login());
+            // Check if token exists in response
+            if (!res.data.token) {
+                throw new Error('No token received from server');
+            }
+
+            // Make sure to include the 'Bearer' prefix when storing the token
+            const token = `Bearer ${res.data.token}`;
+
+            // Dispatch login success with both token and user data
+            dispatch(loginSuccess({
+                token: token,  // Store the complete token with Bearer prefix
+                user: res.data.user
+            }));
+
+            toast.success(res.data.message, { duration: 3000 });
 
             setTimeout(() => {
-                setLoading(false);
-
-                toast.success(res.data.message, { duration: 3000 });
-
-                setTimeout(() => {
-                    navigate('/');
-                }, 500);
-            }, 1000);
-
+                navigate('/');
+            }, 500);
 
         } catch (error) {
-            setLoading(false);
-            if (error.response && error.response.data && error.response.data.message) {
-                toast.error(error.response.data.message, { duration: 3000 });
-                console.log(error.response.data);
+            dispatch(loginFailure(
+                error.response?.data?.message || "Login Failed. Please try again!"
+            ));
 
-            } else {
-                toast.error("Login Failed. Please try again!!", { duration: 3000 });
-            }
+            toast.error(
+                error.response?.data?.message || "Login Failed. Please try again!",
+                { duration: 3000 }
+            );
+
+            console.error('Login error:', error.response?.data || error);
         }
     };
 

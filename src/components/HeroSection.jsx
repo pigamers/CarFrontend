@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { FaArrowRight } from 'react-icons/fa6'
 import hero from '../assets/carsinparallel.jpg';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser, logout } from '../redux/auth/authSlice';
+import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import Loader from './Loader';
 
 export default function HeroSection() {
+    const dispatch = useDispatch();
     const [data, setData] = useState();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
@@ -16,20 +19,39 @@ export default function HeroSection() {
         try {
             const token = localStorage.getItem('token');
 
+            if (!token) {
+                dispatch(logout());
+                throw new Error('No authentication token found');
+            }
+
             const response = await axios.get('http://localhost:5000/api/v1/auth/profile/', {
                 headers: {
-                    'Authorization': token,
+                    'Authorization': token, // token already includes 'Bearer ' prefix
                     'Cache-Control': 'no-cache'
                 }
             });
 
-            if (response.data && response.data.fullname) {
-                setData(response.data.fullname);
+            if (response.data) {
+                // Update Redux store with user data
+                dispatch(updateUser(response.data));
+
+                if (response.data.fullname) {
+                    setData(response.data.fullname);
+                } else {
+                    console.warn("Fullname not found in user data");
+                }
             } else {
-                console.error("No user data in response");
+                throw new Error("No data received from server");
             }
         } catch (error) {
-            console.error("Error fetching profile:", error.response?.data || error.message);
+            if (error.response?.status === 401) {
+                // Token is invalid or expired
+                dispatch(logout());
+                toast.error("Session expired. Please login again.");
+            } else {
+                console.error("Error fetching profile:", error.response?.data || error.message);
+                toast.error("Failed to fetch profile data");
+            }
         }
     }
 
