@@ -84,11 +84,11 @@ export default function Navbar() {
                                     <button
                                         type="button"
                                         className='flex items-center'
-                                        onClick={() => { 
+                                        onClick={() => {
                                             setOpenProfileDropDown(!isOpenProfileDropDown);
                                             if (isOpenNotification) {
                                                 setOpenNotification(!isOpenNotification)
-                                            } 
+                                            }
                                         }}
                                     >
                                         <span className='border rounded-full p-2'>
@@ -96,16 +96,22 @@ export default function Navbar() {
                                         </span>
                                         <RiArrowDropDownLine size={25} />
                                     </button>
-                                    <div className={`absolute right-0 top-12 z-10 mt-2 h-24 w-28 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${isOpenProfileDropDown ? 'block' : 'hidden'}`}>
+                                    <div className={`absolute right-0 top-12 z-10 mt-2 h-40 w-28 rounded-lg shadow-lg border ${isOpenProfileDropDown ? 'block' : 'hidden'}`}>
                                         <div className="bg-one rounded-lg shadow-lg h-full">
                                             <ul className="py-2 text-sm text-five text-center space-y-2">
                                                 <li className="px-4 py-2 cursor-pointer">
-                                                    <Link to="user-profile">
+                                                    <Link to="../user-profile">
                                                         Profile
                                                     </Link>
                                                 </li>
-                                                <hr className='w-4/5 m-auto' />
-                                                <li>
+                                                <hr className='w-full m-auto' />
+                                                <li className="px-4 py-2 cursor-pointer">
+                                                    <Link to="../chat">
+                                                        Messages
+                                                    </Link>
+                                                </li>
+                                                <hr className='w-full m-auto' />
+                                                <li className="px-4 py-2 cursor-pointer">
                                                     <Link to="/" onClick={handleLogout} className='text-three'>
                                                         Logout
                                                     </Link>
