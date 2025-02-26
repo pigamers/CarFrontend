@@ -10,7 +10,7 @@ export default function CarPhotos({
 }) {
     return (
         <>
-            
+
             {/* Front View Field */}
             <div>
                 <label htmlFor="frontView" className="block text-lg font-medium">Front Side -</label>
@@ -25,7 +25,7 @@ export default function CarPhotos({
                     />
                     {/* Display the uploaded front image */}
                     {frontView && <img src={frontView} alt="Front view" width="200" />}
-            </div>
+                </div>
             </div>
 
             {/* Back View Field */}

@@ -16,7 +16,6 @@ export default function SellCarForm() {
     const [loading, setLoading] = useState(false);
 
     // State for the uploaded images and video
-    const [file, setFile] = useState(null);
     const [frontView, setFrontView] = useState(null);
     const [backView, setBackView] = useState(null);
     const [rearSideView1, setRearSideView1] = useState(null);
