@@ -28,7 +28,7 @@ export default function ChatWindow() {
             </div>
 
             {/* Messages area */}
-            <div className="flex-1 overflow-y-auto p-4 bg-one">
+            <div className="flex-1 overflow-y-auto p-4 bg-one dark:bg-five">
                 <div className="space-y-4">
                     {messages.map((message) => (
                         <div
@@ -52,12 +52,12 @@ export default function ChatWindow() {
                 <input
                     type="text"
                     inputMode="text"
-                    className="bg-one block flex-1 min-w-0 md:text-lg p-3 dark:bg-five"
+                    className="bg-one block flex-1 min-w-0 md:text-lg p-3 dark:bg-five dark:text-one focus:outline-none"
                     placeholder="Type a message..."
                 />
                 <button
                     type='submit'
-                    className='px-4 py-2 border-l-2 border-three hover:bg-three hover:text-one'
+                    className='px-4 py-2 border-l-2 border-three hover:bg-three hover:text-one dark:text-one'
                 >
                     Send
                 </button>

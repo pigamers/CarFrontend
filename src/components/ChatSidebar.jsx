@@ -22,21 +22,21 @@ export default function ChatSidebar() {
     )
 
     return (
-        <div className="h-full flex flex-col bg-two">
+        <div className="h-full flex flex-col bg-two dark:bg-five">
             {/* Header */}
             <div className="p-4 bg-one border-b-2 border-three">
                 <h2 className="text-xl font-semibold">Chats</h2>
             </div>
 
             {/* Search Box */}
-            <div className="p-4 border-b">
+            <div className="p-4 border-b dark:border-three">
                 <div className="relative">
                     <input
                         type="text"
                         placeholder="Search chats..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 border rounded-lg"
+                        className="w-full pl-10 pr-4 py-2 border rounded-lg dark:border-three focus:outline-none"
                     />
                     {/* Search Icon */}
                     <FaSearch
@@ -57,20 +57,20 @@ export default function ChatSidebar() {
             {/* Chat list */}
             <div className="flex-1 overflow-y-auto">
                 {filteredChats.length === 0 ? (
-                    <div className="text-center p-4 text-gray-500">
+                    <div className="text-center p-4 dark:text-one">
                         No chats found
                     </div>
                 ) : (
                     filteredChats.map((chat) => (
                         <div
                             key={chat.id}
-                            className="flex items-center p-4 border-b cursor-pointer"
+                            className="flex items-center p-4 border-b cursor-pointer dark:border-three"
                         >
                             {/* Avatar */}
-                            <RxAvatar size={40}/>
+                            <RxAvatar className='dark:text-one' size={40}/>
 
                             {/* Chat details */}
-                            <div className="ml-4 flex-1">
+                            <div className="ml-4 flex-1 dark:text-one">
                                 <div className="flex justify-between items-baseline">
                                     <h3 className="font-medium">{chat.name}</h3>
                                     <span className="text-sm">{chat.time}</span>
